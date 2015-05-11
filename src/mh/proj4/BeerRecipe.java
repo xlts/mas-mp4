@@ -11,7 +11,6 @@ public class BeerRecipe {
 	private Set<HopInBeerRecipe> hopsInBeerRecipe = new HashSet<>(); // { bag }
 	
 	public BeerRecipe(String name, int id) {
-		super();
 		setName(name);
 		setId(id);
 	}
@@ -44,7 +43,7 @@ public class BeerRecipe {
 			throw new IllegalArgumentException("passed a null value");
 		}
 		if (hopsInBeerRecipe.size() == 5) {
-			throw new RuntimeException("there may be at most 5 hops in a beer recipe");
+			throw new RuntimeException("there may be at most 5 hops in a beer recipe"); //custom business constraint
 		}
 		if (!hopsInBeerRecipe.contains(e)) {
 			hopsInBeerRecipe.add(e);

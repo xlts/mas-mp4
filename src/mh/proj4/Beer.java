@@ -18,13 +18,17 @@ public class Beer {
 	public static List<Beer> extent = new ArrayList<Beer>();
 	private static final String FILENAME = "beer.txt";
 	
+	private BreweryEmployee brewer;
+	private BreweryEmployee inspector;
+	
 	public Beer() {
 		extent.add(this);
 	}
 	
-	public Beer(int batchNumber, double abv){
+	public Beer(int batchNumber, double abv, BreweryEmployee brewer){
 		setBatchNumber(batchNumber);
 		setAbv(abv);
+		setBrewer(brewer);
 		
 		extent.add(this);
 	}
@@ -62,7 +66,7 @@ public class Beer {
 			throw new IllegalArgumentException("Passed a null value");
 		}
 		if (abv <= 0 || abv > 20) {
-			throw new IllegalArgumentException("parameter exceeds bounded values");
+			throw new IllegalArgumentException("ABV must be in range (0, 20>");
 		}
 		this.abv = abv;
 	}
@@ -117,5 +121,27 @@ public class Beer {
 	public static List<Beer> getExtent() {
 		return new ArrayList<Beer>(extent);
 	}
+
+	public void setBrewer(BreweryEmployee brewer) {
+		if (brewer != this.brewer) {
+			this.brewer = brewer;
+			brewer.addBeersBrewed(this);
+		}
+	}
+
+	public void setInspector(BreweryEmployee inspector) {
+		if (inspector != this.inspector){
+			this.inspector = inspector;
+			//inspector.addBeersInspected(this); ???
+		}
+	}
 	
+	public BreweryEmployee getBrewer(){
+		return this.brewer;
+	}
+	
+	public BreweryEmployee getInspector(){
+		return this.inspector;
+	}
+
 }
