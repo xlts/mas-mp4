@@ -38,7 +38,6 @@ public class Importer {
 			hops.add(hop);
 			hop.setImporter(this);
 		}
-		
 	}
 	
 	public Set<Hop> getHops(){

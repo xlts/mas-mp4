@@ -1,7 +1,7 @@
 package mh.proj4;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Hop {
@@ -9,15 +9,21 @@ public class Hop {
 	private String name;
 	private double alphaAcidPercentage;
 	
-	private Set<HopInBeerRecipe> hopsInBeerRecipe = new HashSet<>(); // { bag }
+	private List<HopInBeerRecipe> hopsInBeerRecipe = new ArrayList<>(); // { bag }
 	
 	private Importer importer;                        // 
 	private LocalPlantation localPlantation;		 // -- { XOR }
 	
-	public Hop(String name, double alphaAcidPercentage) {
-		super();
+	public Hop(String name, double alphaAcidPercentage, Importer importer) {
 		setName(name);
 		setAlphaAcidPercentage(alphaAcidPercentage);
+		setImporter(importer);
+	}
+	
+	public Hop(String name, double alphaAcidPercentage, LocalPlantation plantation){
+		setName(name);
+		setAlphaAcidPercentage(alphaAcidPercentage);
+		setLocalPlantation(plantation);
 	}
 
 	public String getName() {
@@ -90,6 +96,10 @@ public class Hop {
 			this.localPlantation = localPlantation;
 			localPlantation.addHop(this);
 		}
+	}
+	
+	public List<HopInBeerRecipe> getHopsInBeerRecipe(){
+		return new ArrayList<>(hopsInBeerRecipe);
 	}
 	
 }
